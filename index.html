@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T. Aatreya's Portfolio</title>
+    <style>
+       
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            color: #000;
+            background-color: #f5f5f5;
+            overflow-x: hidden;
+        }
+
+ 
+        .fixed-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #fff;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .fixed-nav a {
+            font-size: 1.2rem;
+            color: #000;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 0.3px solid #000;
+            transition: background 0.3s, color 0.3s;
+            cursor: pointer;
+        }
+
+        .fixed-nav a:hover {
+            background-color: #000;
+            color: #fff;
+        }
+   
+        .landing {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .landing h1 {
+            font-size: 6rem;
+            font-weight: bold;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            color: #000;
+        }
+
+        .landing h1 .outline {
+            color: transparent;
+            -webkit-text-stroke: 1px #000;
+        }
+
+        .landing p {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            max-width: 600px;
+        }
+
+    
+        .section {
+            height: 100vh;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border: 0.3px solid #000;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .section.active {
+            display: flex;
+            flex-direction: column;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-top: 30px;
+            text-transform: uppercase;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        p, ul, li {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+        
+        ul {
+            list-style: none;
+            padding-left: 15px;
+        }
+
+    
+        .nav-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-buttons button {
+            font-size: 1rem;
+            padding: 10px 20px;
+            border: 0.3px solid #000;
+            background-color: #fff;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .nav-buttons button:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="fixed-nav">
+        <a onclick="landing()">Home</a>
+        <a onclick="showSection('summary')">Summary</a>
+        <a onclick="showSection('education')">Education</a>
+        <a onclick="showSection('experience')">Experience</a>
+        <a onclick="showSection('skills')">Skills</a>
+        <a onclick="showSection('projects')">Projects</a>
+    </div>
+
+ 
+    <div class="landing" id="landing">
+        <h1>T AAT<span class="outline">REYA</span></h1>
+        <p>Hey visitor, nice to meet you.</p>
+        <p>I am a software developer, here is my work!</p>
+        
+    </div>
+
+    <div class="section" id="summary">
+        <h2>Summary</h2>
+        <p>Final-year Computer Science Engineering student with a specialization in Business Systems, experienced in web development with a strong focus on React and front-end design. Proficient in building modular, scalable web applications and handling complex user interfaces. Actively seeking opportunities to apply my skills in real-world projects and collaborate on innovative solutions.</p>
+        <div class="nav-buttons">
+            <button onclick="navigateSection(-1)">Previous</button>
+            <button onclick="navigateSection(1)">Next</button>
+        </div>
+    </div>
+
+    <div class="section" id="education">
+        <h2>Education</h2>
+        <p>B.Tech - CSE (with specialization in Business Systems)</p>
+        <p>Vellore Institute of Technology, Vellore</p>
+        <p>Graduation Year: 2025 | GPA: 8.05</p>
+        <p>HSC - 12th CBSE Board, Delhi Public School, Bhilai C.G. | Percentage: 93.4%</p>
+        <p>SSC - 10th CBSE Board, Delhi Public School, Bhilai C.G. | Percentage: 94%</p>
+        <div class="nav-buttons">
+            <button onclick="navigateSection(-1)">Previous</button>
+            <button onclick="navigateSection(1)">Next</button>
+        </div>
+    </div>
+
+    <div class="section" id="experience">
+        <h2>Experience</h2>
+        <p><strong>Web Development Intern</strong></p>
+        <p>Dork Labs (1 Aug - 30 Sep 2023)</p>
+        <p>Worked with React.js to build features for an e-commerce platform focused on health products, including a seller dashboard for data visualization.</p>
+        <div class="nav-buttons">
+            <button onclick="navigateSection(-1)">Previous</button>
+            <button onclick="navigateSection(1)">Next</button>
+        </div>
+    </div>
+
+    <div class="section" id="skills">
+        <h2>Skills</h2>
+        <ul>
+            <li>HTML, CSS, JavaScript, TypeScript, Tailwind, Chakra UI</li>
+            <li>React.js, React-Router, Next.js</li>
+            <li>Version Control: Git</li>
+            <li>IDE: VSCode</li>
+        </ul>
+        <div class="nav-buttons">
+            <button onclick="navigateSection(-1)">Previous</button>
+            <button onclick="navigateSection(1)">Next</button>
+        </div>
+    </div>
+
+    <div class="section" id="projects">
+        <h2>Projects</h2>
+        <h3>Mail Client</h3>
+        <p>A web app for email drafting, posting, and managing (bin, important, etc.). Built using MERN stack.</p>
+        <h3>NFT Warranty System</h3>
+        <p>Developed for GRID 4.0 Hackathon by Flipkart. This project utilizes blockchain to provide NFT-based warranties.</p>
+        <div class="nav-buttons">
+            <button onclick="navigateSection(-1)">Previous</button>
+            <button onclick="navigateSection(1)">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSectionIndex = -1; 
+        const sections = document.querySelectorAll('.section');
+
+        function landing() {
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById('landing').style.display = 'flex';
+        }
+        function showSection(sectionId) {
+            
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById('landing').style.display = 'none';
+
+            const sectionToShow = document.getElementById(sectionId);
+            sectionToShow.classList.add('active');
+            currentSectionIndex = Array.from(sections).indexOf(sectionToShow);
+        }
+
+        function navigateSection(direction) {
+            if (currentSectionIndex === -1) {
+                showSection('summary');
+                return;
+            }
+        
+            currentSectionIndex = (currentSectionIndex + direction + sections.length) % sections.length;
+
+     
+            sections.forEach(section => section.classList.remove('active'));
+
+            sections[currentSectionIndex].classList.add('active');
+        }
+
+
+        document.getElementById('landing').style.display = 'flex';
+    </script>
+</body>
+</html>
