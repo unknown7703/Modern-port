@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>T. Aatreya's Portfolio</title>
     <style>
-       
+        /* Reset and basic styles */
         * {
             margin: 0;
             padding: 0;
@@ -18,7 +18,7 @@
             overflow-x: hidden;
         }
 
- 
+        /* Fixed navigation */
         .fixed-nav {
             position: fixed;
             top: 0;
@@ -46,7 +46,8 @@
             background-color: #000;
             color: #fff;
         }
-   
+        
+
         .landing {
             display: flex;
             flex-direction: column;
@@ -75,7 +76,6 @@
             max-width: 600px;
         }
 
-    
         .section {
             height: 100vh;
             display: none;
@@ -93,7 +93,9 @@
             transform: translateY(50px);
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
-
+        .section p{
+            max-width: 60%;
+        }
         .section.active {
             display: flex;
             flex-direction: column;
@@ -101,6 +103,17 @@
             transform: translateY(0);
         }
 
+        .section a{
+            color: #000;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .section a:hover{
+            color: rgb(91, 91, 91);
+        }
         h2 {
             font-size: 2.5rem;
             font-weight: bold;
@@ -125,7 +138,7 @@
             padding-left: 15px;
         }
 
-    
+        /* Navigation buttons */
         .nav-buttons {
             margin-top: 30px;
             display: flex;
@@ -150,6 +163,7 @@
 </head>
 <body>
 
+    <!-- Fixed Navigation Menu -->
     <div class="fixed-nav">
         <a onclick="landing()">Home</a>
         <a onclick="showSection('summary')">Summary</a>
@@ -159,7 +173,7 @@
         <a onclick="showSection('projects')">Projects</a>
     </div>
 
- 
+    <!-- Landing Page -->
     <div class="landing" id="landing">
         <h1>T AAT<span class="outline">REYA</span></h1>
         <p>Hey visitor, nice to meet you.</p>
@@ -167,6 +181,7 @@
         
     </div>
 
+    <!-- Portfolio Sections -->
     <div class="section" id="summary">
         <h2>Summary</h2>
         <p>Final-year Computer Science Engineering student with a specialization in Business Systems, experienced in web development with a strong focus on React and front-end design. Proficient in building modular, scalable web applications and handling complex user interfaces. Actively seeking opportunities to apply my skills in real-world projects and collaborate on innovative solutions.</p>
@@ -215,11 +230,22 @@
     </div>
 
     <div class="section" id="projects">
-        <h2>Projects</h2>
-        <h3>Mail Client</h3>
-        <p>A web app for email drafting, posting, and managing (bin, important, etc.). Built using MERN stack.</p>
-        <h3>NFT Warranty System</h3>
-        <p>Developed for GRID 4.0 Hackathon by Flipkart. This project utilizes blockchain to provide NFT-based warranties.</p>
+        <h2><a href="https://github.com/unknown7703">Projects</a></h2>
+        <h3><a href="https://github.com/unknown7703/Gmailclone">Mail Client</a></h3>
+        <p>A mail client that provides mail posting ,drafting and managing (bin,important etc) service to user.
+            Utilised MERN stack for building the web app.
+            ReactJS-React is a library for building composable user interfaces.  With CSS in Material UI
+             SMTP.JS-Java Script Library that helps connect and communicate with smtp servers.
+             Express ,MongoDB- express is a node based web application framework that builds server and api
+            service, paired with MongoDB. Also utilising axios as a promise based HTTP client.</p>
+        <h3><a href="https://github.com/unknown7703/nft-marketplace">NFT Warranty System</a></h3>
+        <p> Using immutability of blockchain to make a NFT based warranty system . It has a NFT minting contract ,
+            Listing Contract and a basic supporting front page.
+            
+           Solidity- A programming language used to develop blockchain contracts on chains like polygon
+            ,avalanche etc.
+             Next.js- A React framework used popularly in web3.0 space that has auto page routing and server
+            side rendering features.</p>
         <div class="nav-buttons">
             <button onclick="navigateSection(-1)">Previous</button>
             <button onclick="navigateSection(1)">Next</button>
@@ -227,39 +253,54 @@
     </div>
 
     <script>
-        let currentSectionIndex = -1; 
+        let currentSectionIndex = -1;
         const sections = document.querySelectorAll('.section');
-
+        let scrollTimeout;
+    
         function landing() {
             sections.forEach(section => section.classList.remove('active'));
             document.getElementById('landing').style.display = 'flex';
+            currentSectionIndex = -1;
         }
+    
         function showSection(sectionId) {
-            
             sections.forEach(section => section.classList.remove('active'));
             document.getElementById('landing').style.display = 'none';
-
+    
             const sectionToShow = document.getElementById(sectionId);
             sectionToShow.classList.add('active');
             currentSectionIndex = Array.from(sections).indexOf(sectionToShow);
         }
-
+    
         function navigateSection(direction) {
             if (currentSectionIndex === -1) {
                 showSection('summary');
                 return;
             }
-        
+    
             currentSectionIndex = (currentSectionIndex + direction + sections.length) % sections.length;
-
-     
+    
             sections.forEach(section => section.classList.remove('active'));
-
             sections[currentSectionIndex].classList.add('active');
         }
-
-
+    
+        window.addEventListener('wheel', (event) => {
+            if (scrollTimeout) return;
+    
+            if (event.deltaY < 0) {
+                navigateSection(-1);
+            } else {
+                navigateSection(1);
+            }
+    
+    
+            scrollTimeout = setTimeout(() => {
+                scrollTimeout = null;
+            }, 100);
+        });
+    
         document.getElementById('landing').style.display = 'flex';
     </script>
+    
 </body>
 </html>
